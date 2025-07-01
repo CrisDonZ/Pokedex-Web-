@@ -1,0 +1,88 @@
+.idCard{
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(37, 37, 37);
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: 1px solid rgba(42, 42, 42, 0.2);
+    width: 80px;
+}
+.nameCard{
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(37, 37, 37);
+
+}
+.cardPoke{
+    border-radius: 10px;
+    width: 80%;
+    height: 225px;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+
+    &:hover{
+        transform: scale(1.05);
+        transition-duration: 200ms;
+    
+        > img{
+            margin-top: -20px;
+            transform: scale(1.15);
+            transition-duration: 300ms;
+            filter: drop-shadow(1px 3px 0px rgba(0, 0, 0, 0.5));
+        }
+        
+        > .subCardPoke{
+            background: rgba(245, 245, 245, 0.938);
+            box-shadow:rgb(37, 37, 37) 2px 2px 5px 0px;
+            transition-duration: 300ms;
+        }
+    }
+}
+
+
+
+.imgPoke{
+    width: 180px;
+    margin: 0 auto;
+    z-index: 20;
+    transition: all 0.3s ease-in-out;
+}
+
+.subCardPoke{
+    position: absolute;
+    border-radius: 10px;
+    min-height: 200px;
+    padding: 15px;
+    width: 100%;
+    margin-top: 100px;
+    padding-top: 15px;
+    border: 1px solid rgba(42, 42, 42, 0.2);
+
+}
+
+.cardInfo{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-transform: capitalize;
+}
+.cardType{
+    display: flex;
+    gap: 4px;
+    font-size: 20px;
+    color: rgb(37, 37, 37);
+    text-transform: capitalize;
+}
+.typeCard{
+    font-size: 15px;
+    border-radius: 5px;
+    color: white ;
+    text-align: center;
+    border: 1px solid rgba(42, 42, 42, 0.2);
+    padding: 2px 15px;
+}

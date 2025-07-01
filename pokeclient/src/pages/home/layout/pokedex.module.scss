@@ -1,0 +1,121 @@
+.searchSec{
+    background-color: rgb(206, 56, 56);
+    margin-top: 10px;
+    height: 200px;
+    width: 100%;
+    padding: 60px;
+
+}
+.ord{
+    background-color: #272727;
+    width: 400px;
+    height: 50px;
+    padding: 10px;
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+.searchInput{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px; 
+    padding-left: 50px;
+    padding: auto;
+}
+.labelSearch{
+    font-size: 20px;
+    color: rgb(255, 253, 253);
+    font-weight: bold;
+    padding-left: 50px;
+}
+
+.inputSearch{
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-right: 10px;
+    font-size: 15px;
+    color: rgb(32, 32, 32);
+    border:rgb(59, 59, 59) 1px solid;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.3s ease-in-out;
+    
+    &:focus{
+        outline: none;
+        transition-duration: 200ms;
+    }
+}
+
+
+.btnSearch{
+    width: 50px;
+    height: 50px;
+    margin-left: 15px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(211, 117, 63);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    
+    &:hover{
+        background-color: rgba(221, 75, 50, 0.856);
+        transition-duration: 200ms;
+    }
+}
+
+.itemIzquierdo{
+    background-color:rgb(218, 38, 38);
+    padding: 5px;
+    justify-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    color: white;
+    &:hover{
+        background-color: white;
+        color: black;
+        transition-duration: 300ms;
+
+    }
+}
+.itemDerecho{
+    background-color:rgb(218, 38, 38);
+    padding: 5px;
+    justify-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    color: white;
+    &:hover{
+        background-color: white;
+        color: black;
+        transition-duration: 300ms;
+
+    }
+}
+
+
+.section_pagination{
+    width: 100%;
+    height: 100px;
+    color: rgb(32, 32, 32);
+    justify-items: center;
+
+}
+
+.div_pagination{
+    background-color: rgb(110, 110, 110);
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    color: white;
+    justify-content: space-between;
+}
