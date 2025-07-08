@@ -1,19 +1,25 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext.jsx";
 import { Link, useNavigate} from "react-router-dom";
+import { useEffect } from "react"; // Importamos useEffect
 
 function LoginPage() {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const {signIn, errors: signInErrors} = useAuth(); 
+  const { isAuthenticated } = useAuth(); // Asegúrate de que tu AuthContext provea isAuthenticated
   const navigate = useNavigate();
 
-  // Corrected: Changed 'values' to 'data'
+  // Efecto para redirigir si está autenticado
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
+
   const onSubmit = handleSubmit((data) => {
-    signIn(data);
+    signIn(data); // signIn actualizará isAuthenticated si el login es exitoso
   });
-
-
   return (
     <div className="flex h-[calc(115vh-100px)] items-center justify-center  ">
 

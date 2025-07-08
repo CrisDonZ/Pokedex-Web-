@@ -31,7 +31,7 @@ export default function Header() {
                     <img src={logo} alt="Logo" className="w-48 justify-stretch"/>
                 </div>
                 <div className={css.nav}>
-                    <button className={css.option} onClick={() => navigate('/home')} >
+                    <button className={css.option} onClick={() => navigate('/')} >
                         <img src={iconHome2} alt="iconHome" className={css.iconHover}/>
                         <strong>Inicio</strong>
                     </button>

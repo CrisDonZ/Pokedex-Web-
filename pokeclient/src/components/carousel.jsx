@@ -56,7 +56,7 @@ export default function CarouselDemo() {
           renderBullet: customPagination,
         }}
         modules={[Navigation, Pagination]}
-        className="relative rounded-lg [&_div.swiper-button-next]:text-background [&_div.swiper-button-prev]:text-background"
+        className="relative[&_div.swiper-button-next]:text-background [&_div.swiper-button-prev]:text-background"
       >
         {[
           pokestop,
