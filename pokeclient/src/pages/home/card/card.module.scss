@@ -86,3 +86,18 @@
     border: 1px solid rgba(42, 42, 42, 0.2);
     padding: 2px 15px;
 }
+.addFavoriteButton {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #c0392b;
+    }
+}
+

@@ -1,3 +1,4 @@
+import "dotenv/config"; 
 import express from "express";
 import morgan from "morgan";
 import authRoutes from "./routes/auth.routes.js";
@@ -5,6 +6,7 @@ import cookieParser from "cookie-parser";
 import taskRoutes from "./routes/task.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import cors from "cors";
+
 
 
 const app = express();

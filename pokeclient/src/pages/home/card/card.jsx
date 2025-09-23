@@ -41,6 +41,36 @@ export default function Card({ card }) {
     } else if (pokemonId?.length === 3){
         pokemonId = "N.° " + pokemonId;
     }
+
+    const handleAddFavorite = async () => {
+        const userId = localStorage.getItem("userId");
+        const favoritePokemon = {
+            id: itemPokemon.id,
+            name: itemPokemon.name,
+            image: itemPokemon.sprites?.other["official-artwork"].front_default
+        };
+
+        try {
+            console.log({
+            userId,
+            pokemon: favoritePokemon
+            });
+            const res = await axios.post("http://localhost:4000/api/add-favorite", {
+                userId,
+                pokemon: favoritePokemon
+            });
+            console.log(res.data);
+            alert("Pokémon añadido a favoritos");
+        } catch (error) {
+            console.error(error.response?.data || error.message);
+            alert("Error al añadir a favoritos");
+        }
+    };
+
+
+
+
+
     return(
         <div className={css.cardPoke}>
             <img src={itemPokemon?.sprites?.other["official-artwork"].front_default} alt={itemPokemon.name} className={css.imgPoke}/>
@@ -59,6 +89,9 @@ export default function Card({ card }) {
                         )
                     })}
                 </div>
+                <button onClick={handleAddFavorite} className={css.addFavoriteButton}>
+                    Añadir a favoritos
+                </button>
             </div>
         </div>
     )

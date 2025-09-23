@@ -16,6 +16,16 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  favorites: {
+    type: [
+      {
+        id: Number,
+        name: String,
+        image: String,
+      }
+    ],
+    default: [] 
   }
   
 },

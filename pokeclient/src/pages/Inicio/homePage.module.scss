@@ -32,3 +32,26 @@
         transition: 200ms;
     }
 }
+.title{
+    color: black;
+    font-size: 2rem;
+    text-align: start;
+    margin-left: 80px;
+    margin-top: 20px;
+    font-weight: 600;
+}
+.newsSection{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+    padding: 80px;
+}
+
+.new{
+    height: 300px;
+    flex: 1 0 400px;
+    background-color: royalblue;
+}
+
+

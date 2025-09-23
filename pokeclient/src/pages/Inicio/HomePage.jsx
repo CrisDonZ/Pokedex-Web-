@@ -5,7 +5,6 @@ import { useAuth } from "../../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import CarouselDemo from "../../components/carousel.jsx";
 import Footer from "../home/footer/footer.jsx";
-
 function HomePage() {
     const { user } = useAuth();
     const navigate = useNavigate();
@@ -27,9 +26,23 @@ function HomePage() {
             <div className={css.containerImages}>
                 <CarouselDemo/>
             </div>
-            <div>
-                <button className={css.logout} onClick={() => {logout()}}></button>
+            <h1 className={css.title}>NEWS</h1>
+            <div className={css.newsSection}>
+            
+                <div className={css.new}>
+
+                </div>
+
+
+                <div className={css.new}>
+        
+                </div>
+                <div className={css.new}>
+        
+                </div>
             </div>
+
+
             
                         
             <Footer/>

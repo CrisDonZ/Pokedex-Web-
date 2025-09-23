@@ -31,8 +31,11 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await loginRequest(user);
             console.log(res);   
+            
             setIsAunthenticated(true);
             setUser(res.data);
+
+            localStorage.setItem("userId", res.data.id);
         } catch (error) {
             if(Array.isArray(error.response.data)) {
                 return setErrors(error.response.data);

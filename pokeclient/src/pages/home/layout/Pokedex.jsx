@@ -10,8 +10,6 @@ import * as FaIcons from "react-icons/fa";
 import Footer from "../footer/footer.jsx";
 
 
-
-
 export default function Pokedex(){
     const [arrayPokemon, setArrayPokemon] = useState([]);
     const [globalPokemon, setGlobalPokemon] = useState([]);
