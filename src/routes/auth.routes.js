@@ -15,6 +15,9 @@ router.get('/profile', authRequired, profile)
 router.get('/verify', verifyTokenRequest);
 router.post('/add-favorite', addFavorite);
 router.get("/favorites/:userId", getFavorites);
+// En auth.routes.js
+router.delete('/favorites/:userId/:pokemonId', deleteFavorite);
+
 
 
 

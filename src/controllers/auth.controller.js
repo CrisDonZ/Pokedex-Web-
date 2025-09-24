@@ -158,5 +158,20 @@ export const getFavorites = async (req, res) => {
   }
 };
 
+export const deleteFavorite = async (req, res) => {
+  try {
+    const { userId, pokemonId } = req.params;
+    
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
+
+    user.favorites = user.favorites.filter(pokemon => pokemon.id !== parseInt(pokemonId));
+    await user.save();
+
+    return res.json({ message: 'Pokémon eliminado de favoritos', favorites: user.favorites });
+  } catch (error) {
+    return res.status(500).json({ message: 'Error al eliminar favorito', error: error.message });
+  }
+};
 
 

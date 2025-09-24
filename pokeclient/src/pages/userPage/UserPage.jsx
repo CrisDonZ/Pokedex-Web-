@@ -9,19 +9,15 @@ import { FaHome, FaUserAlt, FaFolder, FaAt, FaCog, FaCamera, FaHeart } from 'rea
 import axios from "axios";
 
 const UserPage = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth(); 
   const navigate = useNavigate();
   const [favorites, setFavorites] = useState([]);
 
-  const logout = () => {
-    logoutRequest(user.token)
-      .then((res) => {
-        navigate("/login");
-        localStorage.clear();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const API_BASE_URL = "https://pokedex-web-z4yg.onrender.com/api";
+
+  const handleLogout = () => {
+    logout(); 
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -33,21 +29,47 @@ const UserPage = () => {
       }
 
       try {
-        const res = await axios.get(`http://localhost:4000/api/favorites/${userId}`);
+        // ✅ URL CORREGIDA - usa la de Render
+        const res = await axios.get(`${API_BASE_URL}/favorites/${userId}`, {
+          withCredentials: true
+        });
         console.log(res.data);
         
         // Filtrar los valores nulos del array de favoritos
         const validFavorites = res.data.filter(fav => fav !== null);
         setFavorites(validFavorites);
       } catch (error) {
-        console.error(error.response?.data || error.message);
+        console.error("Error al obtener favoritos:", error.response?.data || error.message);
       }
     };
 
     fetchFavorites();
   }, []);
 
-  // Función para obtener el color según el tipo de Pokémon (puedes expandir esta función)
+  // Función para quitar de favoritos
+  const removeFavorite = async (pokemonId) => {
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      alert("Usuario no autenticado");
+      return;
+    }
+
+    try {
+      // ✅ URL CORREGIDA - para futura implementación de eliminar favoritos
+      const res = await axios.delete(`${API_BASE_URL}/favorites/${userId}/${pokemonId}`, {
+        withCredentials: true
+      });
+      
+      // Actualizar la lista de favoritos localmente
+      setFavorites(favorites.filter(pokemon => pokemon.id !== pokemonId));
+      alert("Pokémon eliminado de favoritos");
+    } catch (error) {
+      console.error("Error al eliminar favorito:", error);
+      alert("Error al eliminar de favoritos");
+    }
+  };
+
+  // Función para obtener el color según el tipo de Pokémon
   const getTypeColor = (type) => {
     const typeColors = {
       normal: '#A8A878',
@@ -76,12 +98,11 @@ const UserPage = () => {
   return (
     <div className={css.container}>
       <div className={css.header}>
-
         <div className={css.userInfo}>
-          <img src={profileUser}alt="User Avatar" className={css.avatar} />
+          <img src={profileUser} alt="User Avatar" className={css.avatar} />
           <div className={css.userDetails}>
             <strong className={css.username}>{user ? user.username : "Inicia sesión"}</strong>
-            <button onClick={() => {logout()}}>Cerrar Sesión</button>
+            <button onClick={handleLogout}>Cerrar Sesión</button>
           </div>  
         </div>
 
@@ -118,7 +139,6 @@ const UserPage = () => {
             {favorites.length > 0 ? (
               favorites.map((pokemon, index) => (
                 <div key={index} className={css.cardPoke}>
-                  
                   <img 
                     src={pokemon.image} 
                     alt={pokemon.name} 
@@ -128,9 +148,10 @@ const UserPage = () => {
                     <div className={css.cardInfo}>
                       <div className={css.idCard}>#{pokemon.id.toString().padStart(3, '0')}</div>
                       <h2 className={css.nameCard}>{pokemon.name}</h2>
-                      <div className={css.cardType}>
-                      </div>
-                      <button className={css.addFavoriteButton}>
+                      <button 
+                        className={css.removeFavoriteButton}
+                        onClick={() => removeFavorite(pokemon.id)}
+                      >
                         <FaHeart /> Quitar de favoritos
                       </button>
                     </div>
