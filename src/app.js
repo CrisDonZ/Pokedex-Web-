@@ -9,20 +9,25 @@ import cors from "cors";
 
 const app = express();
 
-// Middlewares básicos PRIMERO
+// Configuración CORS MÁS PERMISIVA temporalmente
 app.use(cors({
-    origin: [
-        'https://grand-beignet-93fc4c.netlify.app',
-        'http://localhost:5173'
-    ],
-    credentials: true
+    origin: function (origin, callback) {
+        // Permitir todos los orígenes temporalmente para debug
+        callback(null, true);
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
+
+// Manejar preflight OPTIONS requests
+app.options('*', cors());
 
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 
-// Ruta de prueba para verificar que el servidor funciona
+// Ruta raíz
 app.get("/", (req, res) => {
     res.json({ 
         message: "✅ Pokedex API está funcionando!",
@@ -30,32 +35,9 @@ app.get("/", (req, res) => {
     });
 });
 
-// Ruta de prueba para /api
-app.get("/api", (req, res) => {
-    res.json({ 
-        message: "✅ API routes are working!",
-        availableEndpoints: [
-            "POST /api/register",
-            "POST /api/login", 
-            "POST /api/logout",
-            "GET /api/verify",
-            "GET /api/profile"
-        ]
-    });
-});
-
-// Montar las rutas DESPUÉS de los middlewares
+// Rutas API
 app.use("/api", authRoutes);
 app.use("/api", taskRoutes);
 app.use("/api", userRoutes);
-
-// Manejo de rutas no encontradas
-app.use("*", (req, res) => {
-    res.status(404).json({ 
-        error: "Route not found",
-        path: req.originalUrl,
-        method: req.method
-    });
-});
 
 export default app;

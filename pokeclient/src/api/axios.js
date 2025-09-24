@@ -1,10 +1,10 @@
 import axios from "axios";
 
-// URL de tu backend en Render - REEMPLAZA con tu URL real
+// URL CORRECTA - reemplaza con tu URL exacta de Render
 const backendURL = "https://pokedex-web-z4yg.onrender.com/api";
 
 const instance = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || backendURL,
+    baseURL: backendURL,
     withCredentials: true,
 });
 
