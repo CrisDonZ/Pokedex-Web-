@@ -1,6 +1,7 @@
 import app from "./app.js";
 import { connectDB } from "./db.js";
 import "dotenv/config";
+import express from "express";
 
 const port = process.env.PORT || 5000;
 connectDB();
