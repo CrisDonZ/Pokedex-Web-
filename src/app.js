@@ -22,6 +22,20 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 
+
+// ✅ AGREGAR ESTA RUTA RAÍZ
+app.get('/', (req, res) => {
+    res.json({ 
+        message: 'Pokedex API está funcionando!',
+        status: 'OK',
+        endpoints: {
+            auth: '/api/register, /api/login, /api/logout',
+            users: '/api/users',
+            tasks: '/api/tasks'
+        }
+    });
+});
+
 app.use('/api',authRoutes);
 app.use('/api',taskRoutes);
 app.use('/api',userRoutes);
